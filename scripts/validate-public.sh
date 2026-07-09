@@ -11,34 +11,34 @@ if [[ -f codex-plugin/.mcp.json ]]; then
   python3 -m json.tool codex-plugin/.mcp.json >/dev/null
 fi
 
-placeholder="YOUR""_ORG"
+tracked_files="$(mktemp)"
+trap 'rm -f "$tracked_files"' EXIT
 
-if grep -R -n "$placeholder" \
-  --exclude='validate-public.sh' \
-  --exclude-dir='.git' .; then
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  git ls-files >"$tracked_files"
+else
+  find . -type f \
+    ! -path './.git/*' \
+    ! -path './codex-plugin/.mcp.json' \
+    | sed 's#^\./##' >"$tracked_files"
+fi
+
+placeholder="YOUR""_ORG"
+if xargs grep -n "$placeholder" <"$tracked_files"; then
   echo "Found repo owner placeholder" >&2
   exit 1
 fi
 
 secret_pattern='/Users/wangyukai|10\.211|10\.0|t100erp|tiptop@|dsdata|codex-taikang|BAQ_|ZS-|password\s*=|passwd\s*=|secret\s*=|token\s*='
 
-if command -v rg >/dev/null 2>&1; then
-  if rg -n "$secret_pattern" \
-    --glob '!scripts/validate-public.sh' \
-    --glob '!docs/PUBLICATION_CHECKLIST.md' \
-    --glob '!codex-plugin/.mcp.json' \
-    --glob '!.git/**' .; then
-    echo "Public-safety scan found a blocked pattern" >&2
-    exit 1
-  fi
-else
-  if grep -R -n -E "$secret_pattern" \
-    --exclude='validate-public.sh' \
-    --exclude='PUBLICATION_CHECKLIST.md' \
-    --exclude='.mcp.json' .; then
-    echo "Public-safety scan found a blocked pattern" >&2
-    exit 1
-  fi
+filtered_files="$(mktemp)"
+trap 'rm -f "$tracked_files" "$filtered_files"' EXIT
+
+grep -v -E '^(scripts/validate-public.sh|docs/PUBLICATION_CHECKLIST.md)$' "$tracked_files" >"$filtered_files"
+
+if xargs grep -n -E "$secret_pattern" <"$filtered_files"; then
+  echo "Public-safety scan found a blocked pattern" >&2
+  exit 1
 fi
 
 test -f examples/demo-t100/source/axmt500_sample.4gl
