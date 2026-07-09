@@ -29,7 +29,7 @@ if xargs grep -n "$placeholder" <"$tracked_files"; then
   exit 1
 fi
 
-secret_pattern='/Users/wangyukai|10\.211|10\.0|t100erp|tiptop@|dsdata|codex-taikang|BAQ_|ZS-|password\s*=|passwd\s*=|secret\s*=|token\s*='
+secret_pattern='/Users/|10\.|172\.|192\.168\.|password\s*=|passwd\s*=|secret\s*=|token\s*=|keychain|TCONN|topprd|t100erp|tiptop@|dsdata|codex-taikang|BAQ_|ZS-'
 
 filtered_files="$(mktemp)"
 trap 'rm -f "$tracked_files" "$filtered_files"' EXIT

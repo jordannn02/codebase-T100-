@@ -1,6 +1,6 @@
 # 相容性
 
-`codebase-T100版` 是 workflow scaffold，不綁定特定 upstream binary build。它預期 upstream engine 提供一組穩定的 MCP / CLI 介面。
+`codebase-T100版` workflow scaffold 不綁定特定 upstream binary build。它預期 upstream engine 提供一組穩定的 MCP / CLI 介面。
 
 ## 已知上游
 
@@ -57,3 +57,21 @@ codebase-memory-mcp --help
 ```
 
 再依 `examples/demo-t100/README.md` 做端到端測試。
+
+## Tested Matrix
+
+This scaffold does not vendor pin upstream engine. The table records known local checks so users can judge how much is verified.
+
+| Date | Upstream | Version / Commit | Platform | Result |
+|---|---|---|---|---|
+| 2026-07-09 | local installed `codebase-memory-mcp` | `dev` | macOS arm64 | `--help` OK; `--version` OK; expected UI flags and tool names listed; demo `index_repository` OK (`nodes=8`, `edges=11`); `search_graph` OK for `axmt500`, `input_sales_owner`, `validate_order_owner`, `xmda_t`; field-token query `xmda002` returned 0 and is not claimed as supported |
+| 2026-07-09 | `DeusData/codebase-memory-mcp` | 未驗證 | 未驗證 | 未驗證 |
+| 2026-07-09 | `win4r/codebase-memory-mcp-pro` | 未驗證 | 未驗證 | 未驗證 |
+
+If you verify a combination, update the result with:
+
+- `codebase-memory-mcp --help`
+- `codebase-memory-mcp --ui=true --port=9749`
+- demo index result
+- demo search result for `axmt500`
+- field-token search boundary, especially whether `xmda002` / `xmda003` are directly searchable

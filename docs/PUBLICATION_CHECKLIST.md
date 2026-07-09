@@ -30,7 +30,7 @@
 建議發布前執行：
 
 ```bash
-rg -n "/Users/|10\\.|172\\.|192\\.168\\.|password|passwd|secret|token|keychain|TCONN|topprd|ENT=|site=" .
+rg -n "/Users/|10\\.|172\\.|192\\.168\\.|password\\s*=|passwd\\s*=|secret\\s*=|token\\s*=|keychain|TCONN|topprd|t100erp|tiptop@|dsdata|codex-taikang|BAQ_|ZS-" .
 ```
 
 ```bash

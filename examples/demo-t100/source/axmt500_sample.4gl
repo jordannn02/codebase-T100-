@@ -4,15 +4,15 @@ MAIN
 END MAIN
 
 FUNCTION input_sales_owner()
-    DEFINE xmda002 LIKE xmda_t.xmda002
-    DEFINE xmda003 LIKE xmda_t.xmda003
+    DEFINE l_xmda002 LIKE xmda_t.xmda002
+    DEFINE l_xmda003 LIKE xmda_t.xmda003
 
-    LET xmda002 = "DEMO_SALES"
-    LET xmda003 = "DEMO_DEPT"
+    LET l_xmda002 = "DEMO_SALES"
+    LET l_xmda003 = "DEMO_DEPT"
 
     UPDATE xmda_t
-       SET xmda002 = xmda002,
-           xmda003 = xmda003
+       SET xmda002 = l_xmda002,
+           xmda003 = l_xmda003
      WHERE xmdaent = 9999
        AND xmdadocno = "DEMO-SO-0001"
 END FUNCTION
