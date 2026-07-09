@@ -1,0 +1,46 @@
+{
+  "name": "codebase-t100-edition",
+  "version": "0.1.0",
+  "description": "中文 T100 / TIPTOP / Genero 4GL code graph MCP workflow wrapper.",
+  "author": {
+    "name": "codebase-T100版 contributors"
+  },
+  "homepage": "https://github.com/jordannn02/codebase-T100版",
+  "repository": "https://github.com/jordannn02/codebase-T100版",
+  "license": "MIT",
+  "keywords": [
+    "codebase",
+    "mcp",
+    "t100",
+    "tiptop",
+    "genero",
+    "4gl",
+    "erp",
+    "source-tracing"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "codebase-T100版",
+    "shortDescription": "用 code graph 追 T100 程式、欄位與影響範圍。",
+    "longDescription": "面向 T100 / TIPTOP / Genero 4GL 的中文 code graph MCP 工作流包裝。它保留上游 codebase-memory-mcp 系列工具的本機圖譜能力，新增 T100 證據階梯、欄位格式、工程交接輸出與公開安全邊界。",
+    "developerName": "codebase-T100版 contributors",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Local MCP server",
+      "Code graph indexing",
+      "Call graph search",
+      "Impact analysis",
+      "Graph visualization",
+      "T100 evidence ladder",
+      "Genero 4GL source tracing"
+    ],
+    "websiteURL": "https://github.com/jordannn02/codebase-T100版",
+    "brandColor": "#2563EB",
+    "defaultPrompt": [
+      "請用 codebase-T100版 追這個 T100 程式的欄位來源與影響範圍。",
+      "請先用 graph 找 caller/callee，再回 source 片段確認條件。",
+      "請用 T100 證據階梯輸出：graph、source、schema、runtime、待驗證。"
+    ]
+  }
+}
