@@ -5,8 +5,8 @@
   "author": {
     "name": "codebase-T100版 contributors"
   },
-  "homepage": "https://github.com/jordannn02/codebase-T100版",
-  "repository": "https://github.com/jordannn02/codebase-T100版",
+  "homepage": "https://github.com/jordannn02/codebase-T100-",
+  "repository": "https://github.com/jordannn02/codebase-T100-",
   "license": "MIT",
   "keywords": [
     "codebase",
@@ -35,7 +35,7 @@
       "T100 evidence ladder",
       "Genero 4GL source tracing"
     ],
-    "websiteURL": "https://github.com/jordannn02/codebase-T100版",
+    "websiteURL": "https://github.com/jordannn02/codebase-T100-",
     "brandColor": "#2563EB",
     "defaultPrompt": [
       "請用 codebase-T100版 追這個 T100 程式的欄位來源與影響範圍。",
