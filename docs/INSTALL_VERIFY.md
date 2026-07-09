@@ -2,7 +2,26 @@
 
 這份文件補上最小 smoke test，讓使用者確認 `codebase-T100版` 不只是文件，也能作為可驗證的 Codex / MCP scaffold。
 
-## 1. 確認 upstream engine
+## 1. 準備私有 T100 source tree
+
+如果只要跑 demo，可以略過這一步。
+
+如果要分析真實 T100 / TIPTOP 系統，請先在本機準備一份自己有權限使用的私有 source tree。這份 source 不由 `codebase-T100版` 提供，也不應該 commit 到公開 repo。
+
+建議：
+
+- source 放在本 repo 外面，例如 `/path/to/authorized-t100-source`。
+- 至少包含要分析的 `.4gl`、`.per`、客製程式與共用 include / library。
+- 若要追 caller / callee / table impact，建議使用接近完整的 AP source mirror。
+- 若暫時放在 repo 內測試，請放在已忽略的 `private/`、`private-source/`、`source-mirrors/` 或 `t100-source/`，並再次確認 `git status` 沒有列出真實 source。
+
+建立 index 的概念如下：
+
+```bash
+codebase-memory-mcp cli index_repository '{"repo_path":"/path/to/authorized-t100-source","name":"my-t100","mode":"fast"}'
+```
+
+## 2. 確認 upstream engine
 
 `codebase-T100版` 不包含 engine，請先安裝 `codebase-memory-mcp` 或相容 fork。
 
@@ -22,7 +41,7 @@ trace_path
 get_code_snippet
 ```
 
-## 2. 產生 MCP 設定
+## 3. 產生 MCP 設定
 
 ```bash
 ./scripts/setup-plugin.sh
@@ -46,7 +65,7 @@ codebase-memory-mcp --ui=true --port=9749
 CODEBASE_MEMORY_MCP_COMMAND=/absolute/path/to/codebase-memory-mcp ./scripts/setup-plugin.sh
 ```
 
-## 3. 驗證 repo scaffold
+## 4. 驗證 repo scaffold
 
 ```bash
 ./scripts/validate-public.sh
@@ -60,7 +79,7 @@ CODEBASE_MEMORY_MCP_COMMAND=/absolute/path/to/codebase-memory-mcp ./scripts/setu
 - 沒有常見私人路徑、host、credential pattern。
 - demo source 存在。
 
-## 4. 啟動 MCP UI
+## 5. 啟動 MCP UI
 
 ```bash
 codebase-memory-mcp --ui=true --port=9749
@@ -78,7 +97,7 @@ http://127.0.0.1:9749/
 CODEBASE_MEMORY_MCP_PORT=9750 ./scripts/setup-plugin.sh
 ```
 
-## 5. 用 demo 做端到端檢查
+## 6. 用 demo 做端到端檢查
 
 請看：
 
@@ -103,7 +122,7 @@ make demo-search
 make demo-note
 ```
 
-## 6. 確認 Codex / agent 讀到 plugin
+## 7. 確認 Codex / agent 讀到 plugin
 
 在 Codex 內使用 `codebase-T100版` 或 `codebase-t100` 相關 prompt 時，應該看到 agent 先使用 codebase-memory graph，再回 source 做確認。
 

@@ -4,6 +4,25 @@
 
 它不是一套重新實作的 code graph engine，也不是 upstream 專案改名重發。它的定位是把 `codebase-memory-mcp` / `codebase-memory-mcp-pro` 這類本機 code graph 能力，整理成 T100 顧問、ERP 工程師、內部維運人員可以安裝、驗證、套用的中文 scaffold。
 
+## 使用前提：自備授權的 T100 原始碼
+
+下載這個 repo 不會取得任何 T100 / TIPTOP 原始碼。若要分析真實系統，使用者需要在本機另行準備一份自己有權限使用的私有 T100 source tree。
+
+建議原則：
+
+- 真實 T100 source 放在本 repo 外面，例如 `/path/to/authorized-t100-source`。
+- source tree 至少應包含要分析的 `.4gl`、`.per`、客製程式、共用 include / library；若要追完整影響範圍，建議準備接近完整的 AP source mirror。
+- 使用 upstream engine 對私有 source 目錄建立 index，再用 `codebase-T100版` 的 prompt / workflow 來分析。
+- 不要把真實 T100 source、客戶客製邏輯、正式 DB 輸出、截圖或內部文件 commit 到這個公開 repo。
+
+最小概念流程：
+
+```bash
+codebase-memory-mcp cli index_repository '{"repo_path":"/path/to/authorized-t100-source","name":"my-t100","mode":"fast"}'
+```
+
+若只想測試安裝與流程，可以直接使用本 repo 內的 synthetic demo，不需要任何真實 T100 source。
+
 ## 專案狀態
 
 | 面向 | 狀態 |
@@ -13,6 +32,7 @@
 | 可執行 demo | 提供合成 4GL / PER 範例與預期調查流程 |
 | CI / validation | 提供 GitHub Actions 與本機 validation script |
 | 完整 engine | 不包含，請另外安裝 upstream `codebase-memory-mcp` 系列工具 |
+| T100 原始碼 | 不包含，需由使用者自行準備授權的私有 source tree |
 
 ## 這個工具能做什麼
 
@@ -131,6 +151,7 @@ scripts/validate-public.sh     JSON lint + public-safety scan
 - 不適合直接取代工程師 review。
 - 不適合只靠 graph 結果就更新正式資料。
 - 不適合公開內部 T100 source、正式 DB 查詢結果或客戶客製邏輯。
+- 不適合把私有 source tree 放進公開 repo 或任何會被 git 追蹤的位置。
 
 ## 版本
 

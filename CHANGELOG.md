@@ -16,6 +16,7 @@
 - 安裝驗證文件：`docs/INSTALL_VERIFY.md`。
 - 相容性文件：`docs/COMPATIBILITY.md`。
 - Compatibility Tested Matrix.
+- README / install docs now clarify users must provide their own authorized private T100 source tree.
 
 ### Changed
 
@@ -28,4 +29,5 @@
 
 - 不包含 upstream engine source。
 - 不包含私人 T100 source、正式 DB 結果、公司文件、截圖、host route 或 credential。
+- 真實 T100 source must stay outside the public repo or inside ignored local-only folders.
 - 不把 graph 查詢結果當成 ERP 行為最終證據。

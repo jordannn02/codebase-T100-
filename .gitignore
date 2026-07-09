@@ -16,6 +16,9 @@ target/
 *.pem
 *.p12
 private/
+private-source/
 secrets/
+source-mirrors/
+t100-source/
 outputs/private/
 codex-plugin/.mcp.json
