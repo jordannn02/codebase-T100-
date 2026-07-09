@@ -1,0 +1,17 @@
+LAYOUT
+GRID
+{
+Sales owner     [f_xmda002     ]
+Sales dept      [f_xmda003     ]
+}
+END
+END
+
+ATTRIBUTES
+f_xmda002 = formonly.xmda002, COMMENTS = "demo sales owner";
+f_xmda003 = formonly.xmda003, COMMENTS = "demo sales department";
+END
+
+INSTRUCTIONS
+SCREEN RECORD sr_xmda (formonly.xmda002, formonly.xmda003)
+END

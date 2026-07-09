@@ -19,6 +19,14 @@
 
 ## 技術檢查
 
+優先跑自動化檢查：
+
+```bash
+./scripts/validate-public.sh
+```
+
+也可以手動確認：
+
 建議發布前執行：
 
 ```bash
@@ -37,9 +45,16 @@ git add .
 git commit -m "Initial public Chinese T100 edition"
 ```
 
+## Release 檢查
+
+- [ ] `CHANGELOG.md` 已更新。
+- [ ] `docs/COMPATIBILITY.md` 已更新。
+- [ ] `docs/INSTALL_VERIFY.md` 的 smoke test 仍符合目前 upstream command。
+- [ ] `examples/demo-t100/` 不含真實客戶資料。
+- [ ] tag 名稱與 `CHANGELOG.md` 一致，例如 `v0.1.0-public-safe-scaffold`。
+
 ## 建議 repo 描述
 
 ```text
 codebase-T100版：面向 T100 / TIPTOP / Genero 4GL 的中文 code graph MCP 工作流包裝，基於上游 codebase-memory-mcp 系列工具的公開安全整理版。
 ```
-

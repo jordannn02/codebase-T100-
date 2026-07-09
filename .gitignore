@@ -18,4 +18,4 @@ target/
 private/
 secrets/
 outputs/private/
-
+codex-plugin/.mcp.json
